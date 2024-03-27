@@ -37,7 +37,7 @@ impl Packet {
 	pub(crate) fn decode_packet_buffer(len: usize, buf: &[u8]) -> Result<Self, RconError> {
 		let id = (&buf[0..4]).read_i32::<LittleEndian>()?;
 		let packet_type = (&buf[4..8]).read_i32::<LittleEndian>()?;
-		let body = String::from_utf8((&buf[8..(len - 2)]).to_vec())?;
+		let body = String::from_utf8((buf[8..(len - 2)]).to_vec())?;
 
 		Ok(Packet { id, packet_type, body })
 	}

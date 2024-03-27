@@ -22,6 +22,6 @@ impl Packet {
 
 		let mut buf = Vec::with_capacity(len);
 		stream.take(len as u64).read_to_end(&mut buf).await?;
-		Ok(Packet::decode_packet_buffer(len, &buf)?)
+		Packet::decode_packet_buffer(len, &buf)
 	}
 }
